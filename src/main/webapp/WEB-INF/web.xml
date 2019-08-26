@@ -1,0 +1,194 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <!-- Experimental stuff -->
+
+    <!-- This is a context init parameter -->
+    <context-param>
+        <param-name>email</param-name>
+        <param-value>andreros@gmail.com</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>datasource</param-name>
+        <param-value>file.txt</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>HelloWorldServlet</servlet-name>
+        <servlet-class>com.phenix.fileshare.cmis.experimental.HelloWorldServlet</servlet-class>
+        <!-- This is a servlet init parameter -->
+        <init-param>
+            <param-name>name</param-name>
+            <param-value>Hello World Servlet by André Rosa</param-value>
+        </init-param>
+      <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloWorldServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServiceRunnerServlet</servlet-name>
+        <servlet-class>com.phenix.fileshare.cmis.experimental.ServiceRunnerServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServiceRunnerServlet</servlet-name>
+        <url-pattern>/admin/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.woff</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.ttf</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.woff2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FileManagementServlet</servlet-name>
+        <servlet-class>com.phenix.fileshare.cmis.experimental.FileManagementServlet</servlet-class>
+        <init-param>
+            <param-name>enabled.action</param-name>
+            <param-value>rename,move,remove,edit,createFolder,getContent,changePermissions,compress,extract,copy,upload</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>FileManagementServlet</servlet-name>
+        <url-pattern>/manage</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>UserManagementServlet</servlet-name>
+        <servlet-class>com.phenix.fileshare.cmis.experimental.UserManagementServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UserManagementServlet</servlet-name>
+        <url-pattern>/usermanage/*</url-pattern>
+    </servlet-mapping>
+     <listener>
+        <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+    </listener>
+
+    <!-- CMIS Web Service v1.0 (WSDL) -->
+    <servlet>
+        <servlet-name>cmisws10</servlet-name>
+        <servlet-class>org.apache.chemistry.opencmis.server.impl.webservices.CmisWebServicesServlet</servlet-class>
+        <init-param>
+            <param-name>cmisVersion</param-name>
+            <param-value>1.0</param-value>
+        </init-param>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cmisws10</servlet-name>
+        <url-pattern>/services/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- CMIS ATOM v1.0 -->
+    <servlet>
+        <servlet-name>cmisatom10</servlet-name>
+        <servlet-class>org.apache.chemistry.opencmis.server.impl.atompub.CmisAtomPubServlet</servlet-class>
+        <init-param>
+            <param-name>callContextHandler</param-name>
+            <param-value>org.apache.chemistry.opencmis.server.shared.BasicAuthCallContextHandler</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cmisVersion</param-name>
+            <param-value>1.0</param-value>
+        </init-param>
+        <!--<load-on-startup>2</load-on-startup>-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cmisatom10</servlet-name>
+        <url-pattern>/atom/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- CMIS Web Service v1.1 (WSDL) -->
+    <servlet>
+        <servlet-name>cmisws11</servlet-name>
+        <servlet-class>org.apache.chemistry.opencmis.server.impl.webservices.CmisWebServicesServlet</servlet-class>
+        <init-param>
+            <param-name>cmisVersion</param-name>
+            <param-value>1.1</param-value>
+        </init-param>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cmisws11</servlet-name>
+        <url-pattern>/services11/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- CMIS ATOM v1.1 -->
+    <servlet>
+        <servlet-name>cmisatom11</servlet-name>
+        <servlet-class>org.apache.chemistry.opencmis.server.impl.atompub.CmisAtomPubServlet</servlet-class>
+        <init-param>
+            <param-name>callContextHandler</param-name>
+            <param-value>org.apache.chemistry.opencmis.server.shared.BasicAuthCallContextHandler</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cmisVersion</param-name>
+            <param-value>1.1</param-value>
+        </init-param>
+        <!--<load-on-startup>2</load-on-startup>-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cmisatom11</servlet-name>
+        <url-pattern>/atom11/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- CMIS JSON v1.1 -->
+    <servlet>
+        <servlet-name>cmisbrowser</servlet-name>
+        <servlet-class>org.apache.chemistry.opencmis.server.impl.browser.CmisBrowserBindingServlet</servlet-class>
+        <init-param>
+            <param-name>callContextHandler</param-name>
+            <param-value>org.apache.chemistry.opencmis.server.shared.BasicAuthCallContextHandler</param-value>
+        </init-param>
+        <!--<load-on-startup>2</load-on-startup>-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cmisbrowser</servlet-name>
+        <url-pattern>/browser/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Session Configuration -->
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+
+</web-app>

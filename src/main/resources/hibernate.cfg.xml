@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://backend.synchronecs.com:4006/phenix_cmis_db</property>
+        <property name="hibernate.connection.username">maxscale</property>
+        <property name="hibernate.connection.password">Max$!?3145P%*</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+        <property name="hibernate.search.default.directory_provider">filesystem</property>
+        <property name="hibernate.search.default.indexBase">/tmp</property>
+        <mapping class="com.phenix.fileshare.cmis.model.UserProperty"/>
+        <mapping class="com.phenix.fileshare.cmis.model.Role"/>
+        <mapping class="com.phenix.fileshare.cmis.model.User"/>
+        <mapping class="com.phenix.fileshare.cmis.model.Document"/>
+    </session-factory>
+</hibernate-configuration>
